@@ -1,0 +1,22 @@
+<main class="page">
+  <header>
+    <h1>Group Pre-Order</h1>
+    <div class="header-info">
+      <span>{{ invite().LocationAddress }}</span>
+      <span>{{ invite().StartTime | date:'mediumDate' }} at {{ invite().StartTime | date:'shortTime' }}</span>
+      <span>{{ participants().length }} of {{ invite().MaxGuestCount }} guests</span>
+    </div>
+  </header>
+
+  <ul class="participants">
+    @for (person of participants(); track person.id) {
+      <li><app-participant-card [participant]="person" /></li>
+    }
+  </ul>
+
+  <!-- Grand Total -->
+  <section class="grand-total">
+    <h2>Grand Total</h2>
+    <p>{{ total() | currency }}</p>
+  </section>
+</main>
